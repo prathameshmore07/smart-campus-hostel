@@ -1,0 +1,6 @@
+=== WAITLIST REPORT ===
+1. [SM05] Om | Score: 1 | Reason: No Rooms Available
+2. [SM03] Sumit | Score: 1 | Reason: No Rooms Available
+3. [SM06] Arjun | Score: 1 | Reason: High-Risk Compatibility Conflict
+4. [SM22] Swaraj | Score: 1 | Reason: No Rooms Available
+5. [SM21] Neeraj | Score: 1 | Reason: No Rooms Available

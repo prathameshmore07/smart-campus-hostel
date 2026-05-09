@@ -1,0 +1,19 @@
+=== STUDENT RECORDS ===
+SF12  | Ananya      | Gender: F | CGPA: 8.7  | Room: G201
+SF13  | Kavya       | Gender: F | CGPA: 9    | Room: G101
+SF14  | Sneha       | Gender: F | CGPA: 8.5  | Room: G601
+SF15  | Meera       | Gender: F | CGPA: 7.8  | Room: G301
+SF16  | Aditi       | Gender: F | CGPA: 8.2  | Room: G501
+SF17  | Riya        | Gender: F | CGPA: 8.1  | Room: G301
+SF19  | Isha        | Gender: F | CGPA: 7.9  | Room: G301
+SF20  | Neha        | Gender: F | CGPA: 7    | Room: G201
+SM01  | Prathamesh  | Gender: M | CGPA: 9.1  | Room: B101
+SM02  | Daksh       | Gender: M | CGPA: 8.4  | Room: B501
+SM03  | Sumit       | Gender: M | CGPA: 8.2  | Room: Waitlisted
+SM04  | Vyom        | Gender: M | CGPA: 7.5  | Room: B301
+SM05  | Om          | Gender: M | CGPA: 8.8  | Room: Waitlisted
+SM06  | Arjun       | Gender: M | CGPA: 6.5  | Room: Waitlisted
+SM09  | Kunal       | Gender: M | CGPA: 8    | Room: B201
+SM10  | Rohan       | Gender: M | CGPA: 7.2  | Room: B401
+SM21  | Neeraj      | Gender: M | CGPA: 9.67 | Room: Waitlisted
+SM22  | Swaraj      | Gender: M | CGPA: 8.45 | Room: Waitlisted
