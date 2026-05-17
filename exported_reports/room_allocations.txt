@@ -1,25 +1,24 @@
 === ROOM ALLOCATIONS ===
 Room B101 (M) [1/1]:
   -> SM01 | Prathamesh (Risk: 0)
-Room B201 (M) [1/2]:
-  -> SM09 | Kunal (Risk: 0)
-Room B301 (M) [1/3]:
-  -> SM04 | Vyom (Risk: 0)
-Room B401 (M) [1/4]:
-  -> SM10 | Rohan (Risk: 1)
-Room B501 (M) [1/5]:
-  -> SM02 | Daksh (Risk: 1)
+Room B201 (M) [2/2]:
+  -> SM56 | Aareen (Risk: 0)
+  -> SM03 | Sumit (Risk: 0)
+Room B301 (M) [3/3]:
+  -> SM08 | Aakash (Risk: 0)
+  -> SM11 | Tanay (Risk: 0)
+  -> SM04 | Arjun (Risk: 0)
+Room B401 (M) [0/4]:
+Room B501 (M) [0/5]:
 Room G101 (F) [1/1]:
   -> SF13 | Kavya (Risk: 0)
 Room G201 (F) [2/2]:
-  -> SF20 | Neha (Risk: 0)
-  -> SF12 | Ananya (Risk: 0)
+  -> SF16 | Aditi (Risk: 0)
+  -> SF14 | Sneha (Risk: 0)
 Room G301 (F) [3/3]:
+  -> SF15 | Meera (Risk: 0)
   -> SF19 | Isha (Risk: 0)
   -> SF17 | Riya (Risk: 0)
-  -> SF15 | Meera (Risk: 0)
 Room G401 (F) [0/4]:
-Room G501 (F) [1/5]:
-  -> SF16 | Aditi (Risk: 0)
-Room G601 (F) [1/6]:
-  -> SF14 | Sneha (Risk: 0)
+Room G501 (F) [0/5]:
+Room G601 (F) [0/6]:

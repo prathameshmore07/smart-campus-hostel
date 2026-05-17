@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staywise — Hostel Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ══════════════════════════════
+     SIDEBAR
+══════════════════════════════ -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-mark">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                        <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="brand-name">Staywise</div>
+                    <div class="brand-sub">Hostel Management</div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section-label">Overview</div>
+
+            <button class="nav-item active" onclick="navigate('dashboard')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                </svg>
+                Dashboard
+            </button>
+
+            <button class="nav-item" onclick="navigate('rooms')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                </svg>
+                Rooms
+            </button>
+
+            <button class="nav-item" onclick="navigate('residents')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75M1 21v-2a4 4 0 014-4h8a4 4 0 014 4v2" />
+                </svg>
+                Residents
+            </button>
+
+            <button class="nav-item" onclick="navigate('waitlist')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6" />
+                    <line x1="8" y1="12" x2="21" y2="12" />
+                    <line x1="8" y1="18" x2="21" y2="18" />
+                    <circle cx="3" cy="6" r="1" />
+                    <circle cx="3" cy="12" r="1" />
+                    <circle cx="3" cy="18" r="1" />
+                </svg>
+                Waitlist
+            </button>
+
+            <div class="nav-section-label">Actions</div>
+
+            <button class="nav-item" onclick="navigate('swaps')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="17 1 21 5 17 9" />
+                    <path d="M3 11V9a4 4 0 014-4h14" />
+                    <polyline points="7 23 3 19 7 15" />
+                    <path d="M21 13v2a4 4 0 01-4 4H3" />
+                </svg>
+                Swap Rooms
+            </button>
+
+            <button class="nav-item" onclick="navigate('compatibility')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                </svg>
+                Check Match
+            </button>
+
+            <div class="nav-section-label">System</div>
+
+            <button class="nav-item" onclick="navigate('reports')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10" />
+                    <line x1="12" y1="20" x2="12" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="14" />
+                </svg>
+                Reports
+            </button>
+
+            <button class="nav-item" onclick="navigate('docs')">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                Documentation
+            </button>
+        </nav>
+
+        <div class="sidebar-footer"
+            style="padding:15px; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:12px">
+            <button class="nav-item" onclick="navigate('add-resident')" style="width:100%; margin-bottom:0">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="16" />
+                    <line x1="8" y1="12" x2="16" y2="12" />
+                </svg>
+                Add Resident
+            </button>
+            <div class="admin-profile"
+                style="display:flex; align-items:center; gap:8px; padding-top:8px; border-top:1px dashed var(--border)">
+                <div class="avatar av-blue"
+                    style="width:32px; height:32px; font-size:12px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:600">
+                    AD</div>
+                <div>
+                    <div style="font-size:13px; font-weight:600; color:var(--text-1)">Administrator</div>
+                    <div style="font-size:11px; color:var(--text-3)">staywise@admin</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ══════════════════════════════
+     MAIN
+══════════════════════════════ -->
+    <div class="main">
+
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="topbar-title" id="topbar-title">Dashboard</div>
+            <span class="topbar-date" id="topbar-date"></span>
+            <div class="topbar-badge">
+                <div class="status-dot"></div>
+                System Active
+            </div>
+        </header>
+
+        <div class="content">
+
+            <!-- ── DASHBOARD ── -->
+            <div class="page active" id="page-dashboard">
+                <div class="page-header">
+                    <div class="page-title">Good morning, Admin</div>
+                    <div class="page-desc">Here's what's happening across the hostel today.</div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Occupancy</div>
+                        <div class="stat-value" id="dashboard-occupancy">78<span
+                                style="font-size:16px;color:var(--text-2)">%</span></div>
+                        <div class="stat-sub" id="dashboard-beds-filled">156 / 200 beds filled</div>
+                        <div class="stat-trend up">↑ +3% this week</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Total Residents</div>
+                        <div class="stat-value" id="dashboard-total-residents">156</div>
+                        <div class="stat-sub" id="dashboard-total-rooms">Across 48 rooms</div>
+                        <div class="stat-trend up">↑ 12 new this month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Waitlisted</div>
+                        <div class="stat-value" id="dashboard-waitlisted">23</div>
+                        <div class="stat-sub">Pending allocation</div>
+                        <div class="stat-trend warn">⏳ 8 high priority</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Avg Match Score</div>
+                        <div class="stat-value" id="dashboard-avg-match">82<span
+                                style="font-size:16px;color:var(--text-2)">%</span></div>
+                        <div class="stat-sub">Roommate compatibility</div>
+                        <div class="stat-trend up">↑ Good</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Rooms Available</div>
+                        <div class="stat-value" id="dashboard-rooms-available">14</div>
+                        <div class="stat-sub">Across all types</div>
+                        <div class="stat-trend up">↑ 2 newly cleared</div>
+                    </div>
+                </div>
+
+                <div class="two-col">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Recent Allocations</div>
+                            <button class="btn btn-secondary btn-sm" onclick="navigate('rooms')">View all</button>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Resident</th>
+                                        <th>Room</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-alloc-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Waitlist Queue</div>
+                            <button class="btn btn-secondary btn-sm" onclick="navigate('waitlist')">Full view</button>
+                        </div>
+                        <div class="card-body">
+                            <div id="waitlist-preview"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-sep"></div>
+
+                <div class="two-col">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Room Utilization by Type</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-bar-group">
+                                <div class="chart-bar-row">
+                                    <div class="chart-bar-label">Single</div>
+                                    <div class="chart-bar-track">
+                                        <div class="chart-bar-fill" id="util-single-fill" style="width:0%"></div>
+                                    </div>
+                                    <div class="chart-bar-val" id="util-single-val">0%</div>
+                                </div>
+                                <div class="chart-bar-row">
+                                    <div class="chart-bar-label">Double</div>
+                                    <div class="chart-bar-track">
+                                        <div class="chart-bar-fill" id="util-double-fill" style="width:0%"></div>
+                                    </div>
+                                    <div class="chart-bar-val" id="util-double-val">0%</div>
+                                </div>
+                                <div class="chart-bar-row">
+                                    <div class="chart-bar-label">Triple</div>
+                                    <div class="chart-bar-track">
+                                        <div class="chart-bar-fill" id="util-triple-fill" style="width:0%"></div>
+                                    </div>
+                                    <div class="chart-bar-val" id="util-triple-val">0%</div>
+                                </div>
+                                <div class="chart-bar-row">
+                                    <div class="chart-bar-label">Quad</div>
+                                    <div class="chart-bar-track">
+                                        <div class="chart-bar-fill" id="util-quad-fill" style="width:0%"></div>
+                                    </div>
+                                    <div class="chart-bar-val" id="util-quad-val">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Quick Actions</div>
+                        </div>
+                        <div class="card-body">
+                            <div style="display:flex;flex-direction:column;gap:8px">
+                                <button class="btn btn-accent full-width" onclick="navigate('waitlist')">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="12" cy="12" r="3" />
+                                        <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
+                                    </svg>
+                                    Waitlist &amp; Allocation
+                                </button>
+                                <button class="btn btn-secondary full-width" onclick="navigate('add-resident')">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <line x1="12" y1="8" x2="12" y2="16" />
+                                        <line x1="8" y1="12" x2="16" y2="12" />
+                                    </svg>
+                                    Add New Resident
+                                </button>
+                                <button class="btn btn-secondary full-width" onclick="navigate('reports')">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                                        <polyline points="7 10 12 15 17 10" />
+                                        <line x1="12" y1="15" x2="12" y2="3" />
+                                    </svg>
+                                    Export Reports
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── ROOMS ── -->
+            <div class="page" id="page-rooms">
+                <div class="page-header flex items-center justify-between">
+                    <div>
+                        <div class="page-title">Rooms</div>
+                        <div class="page-desc">Browse and manage all hostel rooms</div>
+                    </div>
+                    <div class="flex gap-8">
+                        <select class="form-select" style="width:auto" id="room-filter-gender">
+                            <option value="all">All genders</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                        <select class="form-select" style="width:auto" id="room-filter-type">
+                            <option value="all">All types</option>
+                            <option value="1">Single</option>
+                            <option value="2">Double</option>
+                            <option value="3">Triple</option>
+                            <option value="4">Quad</option>
+                            <option value="5">5-Bed Sharing</option>
+                            <option value="6">6-Bed Sharing</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="rooms-grid" id="rooms-grid"></div>
+            </div>
+
+            <!-- ── RESIDENTS ── -->
+            <div class="page" id="page-residents">
+                <div class="page-header flex items-center justify-between">
+                    <div>
+                        <div class="page-title">Residents</div>
+                        <div class="page-desc">All registered students in the hostel system</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="navigate('add-resident')">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                        Add Resident
+                    </button>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">All Residents</div>
+                        <input type="text" class="form-input" style="width:200px" placeholder="Search by name or ID…"
+                            oninput="filterResidents(this.value)">
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Resident</th>
+                                    <th>ID</th>
+                                    <th>CGPA</th>
+                                    <th>Academic Info</th>
+                                    <th>Room</th>
+                                    <th>Academic Status</th>
+                                    <th>Hostel Status</th>
+                                    <th style="text-align:right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="residents-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── WAITLIST ── -->
+            <div class="page" id="page-waitlist">
+                <div class="page-header">
+                    <div class="page-title">Waitlist Control Panel</div>
+                    <div class="page-desc">Real-time dynamic priority waitlist queue with starvation prevention and risk
+                        tracking.</div>
+                </div>
+
+                <!-- Waitlist Analytics Cards -->
+                <div class="stats-grid" style="margin-bottom:24px">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Waitlisted</div>
+                        <div class="stat-value" id="waitlist-analytics-total">0<span
+                                style="font-size:14px;color:var(--text-3)"> students</span></div>
+                        <div class="stat-sub">Pending room assignment</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Special Needs Category</div>
+                        <div class="stat-value" id="waitlist-analytics-special">0<span
+                                style="font-size:14px;color:var(--text-3)"> priority</span></div>
+                        <div class="stat-sub">Bypassed for medical reasons</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">High Risk Flagged</div>
+                        <div class="stat-value" id="waitlist-analytics-risk">0<span
+                                style="font-size:14px;color:var(--text-3)"> flagged</span></div>
+                        <div class="stat-sub">Evicted or no-show warnings</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Average Waiting</div>
+                        <div class="stat-value" id="waitlist-analytics-time">0<span
+                                style="font-size:14px;color:var(--text-3)"> days avg</span></div>
+                        <div class="stat-sub">Dynamic priority aging active</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" style="flex-wrap:wrap; gap:16px">
+                        <div class="card-title">Priority Queue Heap <span class="badge badge-amber"
+                                style="margin-left:8px" id="waitlist-count-badge">0 waiting</span></div>
+                        <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap">
+                            <label style="display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:500; color:var(--text-2); cursor:pointer; user-select:none; margin-right:8px">
+                                <input type="checkbox" id="setting-allow-upgrade" style="width:16px; height:16px; accent-color:var(--accent); cursor:pointer" onchange="toggleAllowUpgradeSetting(this.checked)">
+                                Allow automatic room upgrade
+                            </label>
+                            <button class="btn btn-secondary" onclick="recoverVacancies(this)">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 11-.57-8.38l5.67-5.67" />
+                                </svg>
+                                Recover Vacancies
+                            </button>
+                            <button class="btn btn-accent" onclick="runAllocation(this)">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="3" />
+                                    <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
+                                </svg>
+                                Run Smart Allocation
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="padding:20px 24px 0 24px">
+                        <!-- Search and Filters panel -->
+                        <div style="display:flex; gap:12px; flex-wrap:wrap">
+                            <input type="text" id="waitlist-search"
+                                placeholder="Search waitlist by student name or ID..." class="form-input"
+                                style="flex:1; min-width:200px" oninput="handleWaitlistSearchFilter()">
+                            <select id="waitlist-filter-gender" class="form-select" style="width:140px"
+                                onchange="handleWaitlistSearchFilter()">
+                                <option value="">All Genders</option>
+                                <option value="M">Boys</option>
+                                <option value="F">Girls</option>
+                            </select>
+                            <select id="waitlist-filter-special" class="form-select" style="width:160px"
+                                onchange="handleWaitlistSearchFilter()">
+                                <option value="">All Categories</option>
+                                <option value="special">Special Needs</option>
+                                <option value="standard">Standard</option>
+                            </select>
+                            <select id="waitlist-filter-risk" class="form-select" style="width:150px"
+                                onchange="handleWaitlistSearchFilter()">
+                                <option value="">All Risk Levels</option>
+                                <option value="0">Low Risk</option>
+                                <option value="1">Medium Risk</option>
+                                <option value="2">High Risk</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap" style="padding-top:12px">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Student ID</th>
+                                    <th>Name</th>
+                                    <th>Wait Reason</th>
+                                    <th>Wait Time</th>
+                                    <th>Fairness Score</th>
+                                    <th>Risk Level</th>
+                                    <th>Priority Score</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="waitlist-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── ASSIGN ROOMS ── -->
+            <div class="page" id="page-assign">
+                <div class="page-header">
+                    <div class="page-title">Allocation Overview</div>
+                    <div class="page-desc">Understand how the allocation engine works. Run allocation from the Waitlist module.</div>
+                </div>
+                <div class="two-col">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">How Smart Allocation Works</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-dot timeline-dot-done">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff"
+                                            stroke-width="3">
+                                            <polyline points="20 6 9 17 4 12" />
+                                        </svg>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Score each resident</div>
+                                        <div class="timeline-desc">CGPA × 10 + seniority × 5 + special needs boost −
+                                            risk penalty</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot timeline-dot-done">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff"
+                                            stroke-width="3">
+                                            <polyline points="20 6 9 17 4 12" />
+                                        </svg>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Predict no-show risk</div>
+                                        <div class="timeline-desc">DP-based scoring using distance from campus and past
+                                            patterns</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot timeline-dot-pending"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Match preferences (strict mode)</div>
+                                        <div class="timeline-desc">Students requesting 3-sharing are never auto-placed in 5 or 6-sharing. They remain waitlisted if unavailable.</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot timeline-dot-pending"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Check compatibility</div>
+                                        <div class="timeline-desc">Sleep, cleanliness, and study habits — minimum 40%
+                                            required</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot timeline-dot-pending"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Queue unallocated</div>
+                                        <div class="timeline-desc">Unmatched residents enter priority waitlist for next
+                                            run</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Current Allocation Status</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" y1="16" x2="12" y2="12" />
+                                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                                </svg>
+                                Use the <strong>Waitlist</strong> module to run Smart Allocation or Recover Vacancies. Each operation is isolated to prevent overlapping triggers.
+                            </div>
+                            <div style="margin-bottom:16px">
+                                <div class="stat-label" style="margin-bottom:8px">Current status</div>
+                                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                                    <div
+                                        style="display:flex;flex-direction:column;align-items:center;background:var(--surface2);padding:12px 20px;border-radius:var(--radius)">
+                                        <div style="font-size:22px;font-weight:600" id="assign-allocated">0</div>
+                                        <div style="font-size:11px;color:var(--text-2);margin-top:2px">Allocated</div>
+                                    </div>
+                                    <div
+                                        style="display:flex;flex-direction:column;align-items:center;background:var(--surface2);padding:12px 20px;border-radius:var(--radius)">
+                                        <div style="font-size:22px;font-weight:600" id="assign-waitlisted">0</div>
+                                        <div style="font-size:11px;color:var(--text-2);margin-top:2px">Waitlisted</div>
+                                    </div>
+                                    <div
+                                        style="display:flex;flex-direction:column;align-items:center;background:var(--surface2);padding:12px 20px;border-radius:var(--radius)">
+                                        <div style="font-size:22px;font-weight:600" id="assign-open-beds">0</div>
+                                        <div style="font-size:11px;color:var(--text-2);margin-top:2px">Open beds</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-accent full-width" onclick="navigate('waitlist')" style="padding:12px">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <line x1="8" y1="6" x2="21" y2="6" />
+                                    <line x1="8" y1="12" x2="21" y2="12" />
+                                    <line x1="8" y1="18" x2="21" y2="18" />
+                                    <circle cx="3" cy="6" r="1" />
+                                    <circle cx="3" cy="12" r="1" />
+                                    <circle cx="3" cy="18" r="1" />
+                                </svg>
+                                Go to Waitlist &amp; Allocation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SWAP ROOMS ── -->
+            <div class="page" id="page-swaps">
+                <div class="page-header">
+                    <div class="page-title">Swap Rooms</div>
+                    <div class="page-desc">Link residents who want to swap, then process chains using graph traversal
+                    </div>
+                </div>
+                <div class="two-col">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Link Two Residents</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">First Resident ID</label>
+                                <input class="form-input" id="swap-id1" placeholder="e.g. SM01"
+                                    style="font-family:var(--font-mono)">
+                                <div class="form-hint">Must be currently allocated</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Second Resident ID</label>
+                                <input class="form-input" id="swap-id2" placeholder="e.g. SM14"
+                                    style="font-family:var(--font-mono)">
+                                <div class="form-hint">Must be the same gender</div>
+                            </div>
+                            <button class="btn btn-primary full-width" onclick="addSwapLink()">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19" />
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                </svg>
+                                Add Swap Link
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Process Swap Chain</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">Starting Resident ID</label>
+                                <input class="form-input" id="swap-start" placeholder="e.g. SM01"
+                                    style="font-family:var(--font-mono)">
+                                <div class="form-hint">DFS will find all connected swap cycles</div>
+                            </div>
+                            <div id="swap-preview" style="display:none;margin-bottom:16px">
+                                <div class="stat-label" style="margin-bottom:8px">Detected chain</div>
+                                <div class="swap-chain" id="swap-chain-viz"></div>
+                            </div>
+                            <div style="display:flex;gap:8px">
+                                <button class="btn btn-secondary" onclick="previewSwap()" style="flex:1">Preview
+                                    Chain</button>
+                                <button class="btn btn-accent" onclick="processSwap()" style="flex:1">Execute
+                                    Swap</button>
+                            </div>
+                            <div style="margin-top:10px">
+                                <button class="btn btn-danger full-width btn-sm" onclick="undoSwap()">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="9 14 4 9 9 4" />
+                                        <path d="M20 20v-7a4 4 0 00-4-4H4" />
+                                    </svg>
+                                    Undo Last Swap
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-sep"></div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Swap History</div>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Resident A</th>
+                                    <th>Resident B</th>
+                                    <th>From Room</th>
+                                    <th>To Room</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="swap-history-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CHECK MATCH ── -->
+            <div class="page" id="page-compatibility">
+                <div class="page-header">
+                    <div class="page-title">Check Match</div>
+                    <div class="page-desc">Evaluate roommate compatibility between two residents</div>
+                </div>
+                <div class="two-col">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Select Residents</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">First Resident ID</label>
+                                <input class="form-input" id="compat-id1" placeholder="e.g. SM01"
+                                    style="font-family:var(--font-mono)">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Second Resident ID</label>
+                                <input class="form-input" id="compat-id2" placeholder="e.g. SM05"
+                                    style="font-family:var(--font-mono)">
+                            </div>
+                            <button class="btn btn-primary full-width" onclick="checkCompatibility()">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                                </svg>
+                                Check Compatibility
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card" id="compat-result-card">
+                        <div class="card-header">
+                            <div class="card-title">Match Result</div>
+                        </div>
+                        <div class="card-body" id="compat-result">
+                            <div style="text-align:center;color:var(--text-3);padding:24px 0">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" style="opacity:0.4;margin:0 auto 8px;display:block">
+                                    <path
+                                        d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                                </svg>
+                                Enter two resident IDs to check their match score
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── ADD RESIDENT ── -->
+            <div class="page" id="page-add-resident">
+                <div class="page-header">
+                    <div class="page-title">Add Resident</div>
+                    <div class="page-desc">Register a new student into the hostel system</div>
+                </div>
+                <div class="two-col">
+                    <div>
+                        <div class="card mb-16">
+                            <div class="card-header">
+                                <div class="card-title">Personal Details</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label">Gender</label>
+                                    <select class="form-select" id="new-gender" onchange="updateIDPrefix()">
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Student ID</label>
+                                    <input class="form-input" id="new-id" placeholder="SM01"
+                                        style="font-family:var(--font-mono)">
+                                    <div class="form-hint" id="id-hint">Use format: SM## for male, SF## for female</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Full Name</label>
+                                    <input class="form-input" id="new-name" placeholder="Arjun Sharma">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">CGPA</label>
+                                    <input class="form-input" id="new-cgpa" type="number" min="0" max="10" step="0.01"
+                                        placeholder="8.50">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Year of Study</label>
+                                    <select class="form-select" id="new-year">
+                                        <option value="1">1st Year</option>
+                                        <option value="2">2nd Year</option>
+                                        <option value="3">3rd Year</option>
+                                        <option value="4">4th Year (Final)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Special Needs</label>
+                                    <select class="form-select" id="new-special">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="card mb-16">
+                            <div class="card-header">
+                                <div class="card-title">Room Preferences</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label">Room Type</label>
+                                    <select class="form-select" id="new-room-pref">
+                                        <option value="1">Single Room</option>
+                                        <option value="2">Double Sharing</option>
+                                        <option value="3">Triple Sharing</option>
+                                        <option value="4">Quad Sharing</option>
+                                        <option value="5">5-Bed Sharing</option>
+                                        <option value="6">6-Bed Sharing</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Air Conditioning</label>
+                                    <select class="form-select" id="new-ac">
+                                        <option value="0">Not required</option>
+                                        <option value="1">Preferred</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Mess Subscription</label>
+                                    <select class="form-select" id="new-mess">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Food Preference</label>
+                                    <select class="form-select" id="new-food">
+                                        <option value="0">Vegetarian</option>
+                                        <option value="1">Non-Vegetarian</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">Habits &amp; Background</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label">Distance from campus (km)</label>
+                                    <input class="form-input" id="new-distance" type="number" min="0" placeholder="250">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Previous no-show history</label>
+                                    <select class="form-select" id="new-prevpattern">
+                                        <option value="0">No history</option>
+                                        <option value="1">Has no-show record</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Sleep schedule <span class="text-muted">(1 = early, 10 =
+                                            late)</span></label>
+                                    <input class="form-input" id="new-sleep" type="number" min="1" max="10"
+                                        placeholder="5">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Cleanliness <span class="text-muted">(1 = relaxed, 10 =
+                                            strict)</span></label>
+                                    <input class="form-input" id="new-clean" type="number" min="1" max="10"
+                                        placeholder="7">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Study environment <span class="text-muted">(1 = noisy ok,
+                                            10 = silent)</span></label>
+                                    <input class="form-input" id="new-study" type="number" min="1" max="10"
+                                        placeholder="6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:16px">
+                    <button class="btn btn-secondary" onclick="navigate('residents')">Cancel</button>
+                    <button class="btn btn-primary" onclick="submitNewResident(this)">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        Register Resident
+                    </button>
+                </div>
+            </div>
+
+            <!-- ── SEMESTER RENEWAL ── -->
+            <div class="page" id="page-renewal">
+                <div class="page-header">
+                    <div class="page-title">Semester Renewal</div>
+                    <div class="page-desc">Process academic promotions, graduations, retain backlog/extension students, and recover vacated rooms</div>
+                </div>
+                <div class="alert alert-warn">
+                    <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                        <line x1="12" y1="9" x2="12" y2="13" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    This action will check out eligible final-year students (exams passed, no backlogs, no placement
+                    extensions) and free their rooms. This cannot be undone.
+                </div>
+                <div class="two-col">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">What happens</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-dot timeline-dot-done">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff"
+                                            stroke-width="3">
+                                            <polyline points="20 6 9 17 4 12" />
+                                        </svg>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Check academic eligibility</div>
+                                        <div class="timeline-desc">Year-4 students must have passed exams, no backlogs,
+                                            and no placement extension to qualify for checkout</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot timeline-dot-pending"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Process checkouts</div>
+                                        <div class="timeline-desc">Rooms are freed, students marked as graduated</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot timeline-dot-pending"></div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Promote waitlisted students</div>
+                                        <div class="timeline-desc">Highest-priority waitlisted students fill newly freed
+                                            rooms</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Current semester snapshot</div>
+                        </div>
+                        <div class="card-body">
+                            <div style="display:flex;flex-direction:column;gap:12px">
+                                <div
+                                    style="display:flex;justify-content:space-between;padding:12px;background:var(--surface2);border-radius:var(--radius)">
+                                    <span class="text-sm text-muted">Final-year residents</span>
+                                    <span style="font-weight:600;font-family:var(--font-mono)"
+                                        id="renewal-graduating-count">0</span>
+                                </div>
+                                <div
+                                    style="display:flex;justify-content:space-between;padding:12px;background:var(--surface2);border-radius:var(--radius)">
+                                    <span class="text-sm text-muted">Rooms to be freed</span>
+                                    <span style="font-weight:600;font-family:var(--font-mono)"
+                                        id="renewal-rooms-freed">0</span>
+                                </div>
+                                <div
+                                    style="display:flex;justify-content:space-between;padding:12px;background:var(--surface2);border-radius:var(--radius)">
+                                    <span class="text-sm text-muted">Waitlisted to promote</span>
+                                    <span style="font-weight:600;font-family:var(--font-mono)"
+                                        id="renewal-waitlisted-promote">0</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-accent full-width" style="margin-top:16px;padding:12px"
+                                onclick="runRenewal(this)">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M3 12a9 9 0 009 9 9.75 9.75 0 006.74-2.74M21 3v6h-6M21 12a9 9 0 01-9 9" />
+                                </svg>
+                                Process Semester Renewal
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── ACADEMIC STATUS ── -->
+            <div class="page" id="page-academic-status">
+                <div class="page-header">
+                    <div class="page-title">Academic Progression</div>
+                    <div class="page-desc">Enter exam results to trigger automatic year promotion. Students are promoted
+                        only when exams are passed with no backlogs.</div>
+                </div>
+                <div class="alert alert-info">
+                    <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="16" x2="12" y2="12" />
+                        <line x1="12" y1="8" x2="12.01" y2="8" />
+                    </svg>
+                    When you save results with "Exam Passed = Yes" and "No Backlog", the student is automatically
+                    promoted to the next year. Year-4 students become eligible for graduation checkout via End of
+                    Semester.
+                </div>
+
+                <div class="two-col">
+                    <div>
+                        <div class="card mb-16">
+                            <div class="card-header">
+                                <div class="card-title">Update Student Record</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label">Student ID</label>
+                                    <input class="form-input" id="acad-student-id" placeholder="e.g. SM01"
+                                        style="font-family:var(--font-mono)">
+                                    <span class="text-xs text-muted">Enter ID and click Load to fetch current
+                                        status</span>
+                                </div>
+                                <button class="btn btn-secondary full-width" style="margin-bottom:16px"
+                                    onclick="loadAcademicStatus()">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="1 4 1 10 7 10" />
+                                        <path d="M3.51 15a9 9 0 102.13-9.36L1 10" />
+                                    </svg>
+                                    Load Current Status
+                                </button>
+
+                                <div id="acad-form-fields" style="display:none">
+                                    <div id="acad-student-info"
+                                        style="padding:12px;background:var(--surface2);border-radius:var(--radius);margin-bottom:16px">
+                                    </div>
+
+                                    <!-- Read-only current status -->
+                                    <div style="display:flex;gap:10px;margin-bottom:16px">
+                                        <div
+                                            style="flex:1;padding:12px;background:var(--surface2);border-radius:var(--radius);text-align:center">
+                                            <div class="text-xs text-muted" style="margin-bottom:4px">Current Year</div>
+                                            <div id="acad-current-year"
+                                                style="font-weight:700;font-size:16px;font-family:var(--font-mono)">—
+                                            </div>
+                                        </div>
+                                        <div
+                                            style="flex:1;padding:12px;background:var(--surface2);border-radius:var(--radius);text-align:center">
+                                            <div class="text-xs text-muted" style="margin-bottom:4px">Current Semester
+                                            </div>
+                                            <div id="acad-current-sem"
+                                                style="font-weight:700;font-size:16px;font-family:var(--font-mono)">—
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Updated Overall CGPA</label>
+                                        <input class="form-input" id="acad-updated-cgpa" type="number" min="0" max="10"
+                                            step="0.01" placeholder="8.50">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Final Semester CGPA</label>
+                                        <input class="form-input" id="acad-final-cgpa" type="number" min="0" max="10"
+                                            step="0.01" placeholder="8.5">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Exam Passed</label>
+                                        <select class="form-select" id="acad-exam-passed">
+                                            <option value="0">No — Not passed yet</option>
+                                            <option value="1">Yes — All exams cleared</option>
+                                        </select>
+                                        <span class="text-xs text-muted">Setting "Yes" with no backlog triggers
+                                            auto-promotion</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Has Active Backlog</label>
+                                        <select class="form-select" id="acad-has-backlog">
+                                            <option value="0">No — No backlogs</option>
+                                            <option value="1">Yes — Has pending backlogs</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="acad-placement-group">
+                                        <label class="form-label">Placement Extension <span class="text-muted">(Year 4
+                                                only)</span></label>
+                                        <select class="form-select" id="acad-placement-ext">
+                                            <option value="0">No — Standard timeline</option>
+                                            <option value="1">Yes — Extension approved</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-primary full-width" style="margin-top:8px;padding:12px"
+                                        onclick="saveAcademicStatus()">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20 6 9 17 4 12" />
+                                        </svg>
+                                        Save and Refresh Form
+                                    </button>
+                                </div>
+
+                                <!-- Promotion result card (shown after save) -->
+                                <div id="acad-promotion-result" style="display:none;margin-top:16px"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Year-4 Students Overview</div>
+                        </div>
+                        <div class="card-body">
+                            <div id="acad-year4-list" style="display:flex;flex-direction:column;gap:8px">
+                                <div class="text-sm text-muted">Loading...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── REPORTS ── -->
+            <div class="page" id="page-reports">
+                <div class="page-header flex items-center justify-between">
+                    <div>
+                        <div class="page-title">Reports</div>
+                        <div class="page-desc">System analytics, allocation stats, and exportable records</div>
+                    </div>
+                    <button class="btn btn-primary" onclick="exportAllReports()">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        Export All
+                    </button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Allocations</div>
+                        <div class="stat-value" id="report-total-allocations">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Failed Allocations</div>
+                        <div class="stat-value" id="report-failed-allocations">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Successful Swaps</div>
+                        <div class="stat-value" id="report-successful-swaps">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Avg Compatibility</div>
+                        <div class="stat-value" id="report-avg-compatibility">0<span style="font-size:14px">%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="two-col">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Room Allocations Report</div>
+                            <button class="btn btn-secondary btn-sm" onclick="downloadReport('room_allocations')">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                Export TXT
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-bar-group">
+                                <div class="chart-bar-row">
+                                    <div class="chart-bar-label">Male rooms</div>
+                                    <div class="chart-bar-track">
+                                        <div class="chart-bar-fill" style="width:78%"></div>
+                                    </div>
+                                    <div class="chart-bar-val">78%</div>
+                                </div>
+                                <div class="chart-bar-row">
+                                    <div class="chart-bar-label">Female rooms</div>
+                                    <div class="chart-bar-track">
+                                        <div class="chart-bar-fill" style="width:71%"></div>
+                                    </div>
+                                    <div class="chart-bar-val">71%</div>
+                                </div>
+                                <div class="chart-bar-row">
+                                    <div class="chart-bar-label">AC rooms</div>
+                                    <div class="chart-bar-track">
+                                        <div class="chart-bar-fill" style="width:88%"></div>
+                                    </div>
+                                    <div class="chart-bar-val">88%</div>
+                                </div>
+                                <div class="chart-bar-row">
+                                    <div class="chart-bar-label">Non-AC rooms</div>
+                                    <div class="chart-bar-track">
+                                        <div class="chart-bar-fill" style="width:65%"></div>
+                                    </div>
+                                    <div class="chart-bar-val">65%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Risk Distribution</div>
+                        </div>
+                        <div class="card-body">
+                            <div style="display:flex;flex-direction:column;gap:12px">
+                                <div style="display:flex;align-items:center;justify-content:space-between">
+                                    <div style="display:flex;align-items:center;gap:8px">
+                                        <div style="width:10px;height:10px;border-radius:50%;background:var(--accent)">
+                                        </div>
+                                        <span class="text-sm">Low risk</span>
+                                    </div>
+                                    <span style="font-weight:600;font-family:var(--font-mono)">112 residents</span>
+                                </div>
+                                <div style="display:flex;align-items:center;justify-content:space-between">
+                                    <div style="display:flex;align-items:center;gap:8px">
+                                        <div style="width:10px;height:10px;border-radius:50%;background:#d97706"></div>
+                                        <span class="text-sm">Medium risk</span>
+                                    </div>
+                                    <span style="font-weight:600;font-family:var(--font-mono)">34 residents</span>
+                                </div>
+                                <div style="display:flex;align-items:center;justify-content:space-between">
+                                    <div style="display:flex;align-items:center;gap:8px">
+                                        <div style="width:10px;height:10px;border-radius:50%;background:#dc2626"></div>
+                                        <span class="text-sm">High risk</span>
+                                    </div>
+                                    <span style="font-weight:600;font-family:var(--font-mono)">10 residents</span>
+                                </div>
+                            </div>
+                            <hr class="divider">
+                            <div style="font-size:12px;color:var(--text-3);line-height:1.5">
+                                High-risk residents may be flagged for vacancy recovery. Risk is calculated using
+                                distance from campus and previous no-show patterns.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-sep"></div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Export Reports</div>
+                    </div>
+                    <div class="card-body">
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px">
+                            <button class="btn btn-secondary" onclick="downloadReport('room_allocations')">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                Room Allocations
+                            </button>
+                            <button class="btn btn-secondary" onclick="downloadReport('waitlist_report')">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                Waitlist Report
+                            </button>
+                            <button class="btn btn-secondary" onclick="downloadReport('student_records')">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                Student Records
+                            </button>
+                            <button class="btn btn-secondary" onclick="downloadReport('analytics_report')">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                Analytics Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════
+             SYSTEM DOCUMENTATION & FEATURES PAGE
+            ══════════════════════════════ -->
+            <div class="page" id="page-docs">
+                <div style="margin-bottom:32px">
+                    <h2 style="font-family:'Playfair Display', serif; font-size:32px; font-weight:600; color:var(--text); margin-bottom:12px">Staywise System Architecture & Features</h2>
+                    <p style="font-size:15px; color:var(--text-3); max-width:700px; line-height:1.6">A complete reference guide mapping all implemented Data Structures, Algorithms, Dynamic engines, and Admin modules of the Smart Campus Hostel ERP.</p>
+                </div>
+
+                <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px">
+                    <div class="card" style="padding:24px">
+                        <div class="card-header" style="border-bottom:1px solid var(--border); padding-bottom:12px; margin-bottom:16px">
+                            <h3 style="font-family:'Playfair Display', serif; font-size:20px; font-weight:600">🧠 Core Allocation & DSA Engines</h3>
+                        </div>
+                        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px">
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>Smart Room Allocation Engine:</strong> Custom priority based room matching logic enforcing gender limits and strict preferences.</div>
+                            </li>
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>Priority Queue Waitlist System:</strong> Binary heap waitQueue ensuring deterministic non-random student prioritization.</div>
+                            </li>
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>Fairness Rotation Mechanism:</strong> Queue-based fairnessQueue preventing starvation. Skipped students dynamically gain fairness score.</div>
+                            </li>
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>AVL Tree Student Ranking:</strong> Highly optimized self-balancing BST storing and sorting student records by key composite metrics.</div>
+                            </li>
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>Dynamic Programming Compatibility Engine:</strong> Matches roommates using habit vectors (Sleep, Study, Cleanliness) to calculate precise match scores.</div>
+                            </li>
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>DFS Graph-Based Room Swap System:</strong> Graph structure tracking multi-student cyclic roommate exchange preferences.</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="padding:24px">
+                        <div class="card-header" style="border-bottom:1px solid var(--border); padding-bottom:12px; margin-bottom:16px">
+                            <h3 style="font-family:'Playfair Display', serif; font-size:20px; font-weight:600">⚡ Dynamic Operations Checklist</h3>
+                        </div>
+                        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px">
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>Automatic Vacancy Recovery:</strong> Periodically identifies high-risk no-shows and automatically promotes highest priority waitlist students.</div>
+                            </li>
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>Manual Room Assignment:</strong> Allows admin to bypass automated matching and manually assign a student to a vacant room with safety filters.</div>
+                            </li>
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>Undo Swap Action:</strong> Implements a Stack data structure to revert the last completed cyclic swap operation cleanly.</div>
+                            </li>
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>Academic Year Promotion & Checkout:</strong> Semi-automated semester renewal transitioning students to subsequent classes and handling checkouts.</div>
+                            </li>
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>Resident Management Dashboard:</strong> Full CRUD capability for adding, viewing, modifying, or deleting hostel residents in real-time.</div>
+                            </li>
+                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
+                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
+                                <div><strong>Data Persistence Engine:</strong> All modifications dynamically commit to physical local record storage files (`students.txt`, `rooms.txt`).</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card" style="padding:24px; margin-bottom:24px">
+                    <div class="card-header" style="border-bottom:1px solid var(--border); padding-bottom:12px; margin-bottom:16px">
+                        <h3 style="font-family:'Playfair Display', serif; font-size:20px; font-weight:600">🛠️ Active Module Operations Checklist</h3>
+                    </div>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; font-size:13.5px">
+                        <div style="background:var(--surface-dark); padding:16px; border-radius:12px; border:1px solid var(--border)">
+                            <h4 style="font-weight:600; margin-bottom:8px">👥 Residents & Swaps Tab</h4>
+                            <div style="color:var(--text-2); line-height:1.5">Contains <strong>Add Resident</strong>, <strong>Edit</strong>, and <strong>Delete</strong> buttons. Has the cyclic roommate swap form with DFS chain solver, and <strong>Undo Last Swap</strong> button.</div>
+                        </div>
+                        <div style="background:var(--surface-dark); padding:16px; border-radius:12px; border:1px solid var(--border)">
+                            <h4 style="font-weight:600; margin-bottom:8px">📋 Waitlist & Allocation Tab</h4>
+                            <div style="color:var(--text-2); line-height:1.5">Includes the <strong>Run Smart Allocation</strong> and <strong>Recover Vacancies</strong> buttons. Displays full priority calculations, and provides the <strong>Assign Room</strong> button.</div>
+                        </div>
+                        <div style="background:var(--surface-dark); padding:16px; border-radius:12px; border:1px solid var(--border)">
+                            <h4 style="font-weight:600; margin-bottom:8px">🎓 End of Semester Tab</h4>
+                            <div style="color:var(--text-2); line-height:1.5">Provides the <strong>Run Semester Renewal</strong> button which handles grading checkouts, retention checks, placement extensions, and student promotions.</div>
+                        </div>
+                        <div style="background:var(--surface-dark); padding:16px; border-radius:12px; border:1px solid var(--border)">
+                            <h4 style="font-weight:600; margin-bottom:8px">📈 System Reports Tab</h4>
+                            <div style="color:var(--text-2); line-height:1.5">Provides download/export options for <strong>Room Allocations</strong>, <strong>Waitlist Report</strong>, <strong>Student Records</strong>, and <strong>Analytics Report</strong>.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /content -->
+    </div><!-- /main -->
+
+    <!-- Toast container -->
+    <div class="toast-container" id="toasts"></div>
+
+
+
+    <!-- ══════════════════════════════
+     EDIT RESIDENT MODAL
+    ══════════════════════════════ -->
+    <div id="edit-modal"
+        style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:9990; display:none; align-items:center; justify-content:center; backdrop-filter:blur(4px)">
+        <div
+            style="width:100%; max-width:600px; max-height:90vh; overflow-y:auto; padding:32px; background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:0 20px 50px rgba(0,0,0,0.1); color:var(--text)">
+            <div
+                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; border-bottom:1px solid var(--border); padding-bottom:16px">
+                <h3 style="font-family:'Playfair Display', serif; font-size:22px; color:var(--text)"
+                    id="edit-modal-title">Edit Resident Details</h3>
+                <button onclick="closeEditModal()"
+                    style="background:none; border:none; color:var(--text-2); font-size:24px; cursor:pointer">&times;</button>
+            </div>
+
+            <form id="edit-resident-form" onsubmit="handleEditResidentSubmit(event)"
+                style="display:flex; flex-direction:column; gap:20px">
+                <input type="hidden" id="edit-student-id">
+
+                <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
+                    <div>
+                        <label class="form-label">Full Name</label>
+                        <input type="text" id="edit-name" class="form-input" required style="width:100%">
+                    </div>
+                    <div>
+                        <label class="form-label">Overall CGPA</label>
+                        <input type="number" id="edit-cgpa" class="form-input" min="0.0" max="10.0" step="0.01" required
+                            style="width:100%">
+                    </div>
+                    <div>
+                        <label class="form-label">Academic Year</label>
+                        <select id="edit-year" class="form-select" style="width:100%">
+                            <option value="1">Year 1</option>
+                            <option value="2">Year 2</option>
+                            <option value="3">Year 3</option>
+                            <option value="4">Year 4</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Current Semester</label>
+                        <select id="edit-semester" class="form-select" style="width:100%">
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                            <option value="4">Semester 4</option>
+                            <option value="5">Semester 5</option>
+                            <option value="6">Semester 6</option>
+                            <option value="7">Semester 7</option>
+                            <option value="8">Semester 8</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Room Type Preference</label>
+                        <select id="edit-room-pref" class="form-select" style="width:100%">
+                            <option value="1">Single Room (1-Seater)</option>
+                            <option value="2">Double Room (2-Seater)</option>
+                            <option value="3">Triple Room (3-Seater)</option>
+                            <option value="4">Quad Room (4-Seater)</option>
+                            <option value="5">5-Bed Sharing Room (5-Seater)</option>
+                            <option value="6">6-Bed Sharing Room (6-Seater)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Food Preference</label>
+                        <select id="edit-food-pref" class="form-select" style="width:100%">
+                            <option value="1">Veg</option>
+                            <option value="2">Non-Veg</option>
+                            <option value="3">Vegan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
+                    <div style="display:flex; align-items:center; gap:8px">
+                        <input type="checkbox" id="edit-wants-ac" style="width:18px; height:18px">
+                        <label for="edit-wants-ac" class="form-label" style="margin-bottom:0; cursor:pointer">Wants AC
+                            Room</label>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px">
+                        <input type="checkbox" id="edit-wants-mess" style="width:18px; height:18px">
+                        <label for="edit-wants-mess" class="form-label" style="margin-bottom:0; cursor:pointer">Wants
+                            Mess Service</label>
+                    </div>
+                </div>
+
+                <div style="border-top:1px dashed var(--border); padding-top:16px">
+                    <h4 style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:12px">Roommate
+                        Compatibility Habits (1-10)</h4>
+                    <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px">
+                        <div>
+                            <label class="form-label" style="font-size:11px">Sleep Schedule</label>
+                            <input type="number" id="edit-habit-sleep" class="form-input" min="1" max="10" required
+                                style="width:100%">
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size:11px">Cleanliness Level</label>
+                            <input type="number" id="edit-habit-cleanliness" class="form-input" min="1" max="10"
+                                required style="width:100%">
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size:11px">Study Habits</label>
+                            <input type="number" id="edit-habit-study" class="form-input" min="1" max="10" required
+                                style="width:100%">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-top:1px dashed var(--border); padding-top:16px">
+                    <h4 style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:12px">Academic
+                        Progression Results</h4>
+                    <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
+                        <div>
+                            <label class="form-label">Final Semester CGPA</label>
+                            <input type="number" id="edit-final-sem-cgpa" class="form-input" min="0.0" max="10.0"
+                                step="0.01" style="width:100%">
+                        </div>
+                        <div style="display:flex; flex-direction:column; justify-content:center; gap:8px">
+                            <div style="display:flex; align-items:center; gap:8px">
+                                <input type="checkbox" id="edit-exam-passed" style="width:16px; height:16px">
+                                <label for="edit-exam-passed" class="form-label"
+                                    style="margin-bottom:0; cursor:pointer">Exam Passed / Cleared</label>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:8px">
+                                <input type="checkbox" id="edit-has-backlog" style="width:16px; height:16px">
+                                <label for="edit-has-backlog" class="form-label"
+                                    style="margin-bottom:0; cursor:pointer; color:var(--danger)">Has Active
+                                    Backlog</label>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:8px">
+                                <input type="checkbox" id="edit-placement-ext" style="width:16px; height:16px">
+                                <label for="edit-placement-ext" class="form-label"
+                                    style="margin-bottom:0; cursor:pointer">Has Placement Extension</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    style="display:flex; justify-content:end; gap:12px; margin-top:16px; border-top:1px solid var(--border); padding-top:16px">
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="btn btn-accent">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════
+     MANUAL ROOM ASSIGNMENT MODAL
+    ══════════════════════════════ -->
+    <div id="manual-assign-modal"
+        style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:9992; display:none; align-items:center; justify-content:center; backdrop-filter:blur(4px)">
+        <div
+            style="width:100%; max-width:500px; padding:32px; background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:0 20px 50px rgba(0,0,0,0.1); color:var(--text)">
+            <div
+                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; border-bottom:1px solid var(--border); padding-bottom:16px">
+                <h3 style="font-family:'Playfair Display', serif; font-size:22px; color:var(--text)">Manual Room Assignment</h3>
+                <button onclick="closeManualAssignModal()"
+                    style="background:none; border:none; color:var(--text-3); font-size:24px; cursor:pointer">&times;</button>
+            </div>
+            <div style="margin-bottom:20px">
+                <label class="form-label" style="display:block; margin-bottom:8px">Student to Assign</label>
+                <div id="manual-assign-student-name" style="font-size:16px; font-weight:600; padding:12px; background:var(--surface-dark); border-radius:8px; border:1px solid var(--border)">
+                    Student Name (ID)
+                </div>
+                <input type="hidden" id="manual-assign-student-id">
+            </div>
+            <div style="margin-bottom:24px">
+                <label class="form-label" style="display:block; margin-bottom:8px">Select Vacant, Gender-Compatible Room</label>
+                <select id="manual-assign-room-select" class="form-select" style="width:100%; padding:10px 14px">
+                    <!-- Vacant compatible rooms populated dynamically -->
+                </select>
+            </div>
+            <div style="display:flex; justify-content:end; gap:12px; border-top:1px solid var(--border); padding-top:16px">
+                <button type="button" class="btn btn-secondary" onclick="closeManualAssignModal()">Cancel</button>
+                <button type="button" class="btn btn-accent" onclick="submitManualAssign()">Assign Resident</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════
+     CUSTOM CONFIRMATION MODAL
+    ══════════════════════════════ -->
+    <div id="confirm-modal"
+        style="position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); z-index:9995; display:none; align-items:center; justify-content:center; backdrop-filter:blur(4px)">
+        <div
+            style="width:100%; max-width:450px; padding:32px; background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:0 20px 50px rgba(0,0,0,0.1); text-align:center; color:var(--text)">
+            <div style="display:flex; justify-content:center; margin-bottom:20px">
+                <div
+                    style="width:50px; height:50px; background:var(--danger-light); border:1px solid rgba(220,38,38,0.2); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--danger)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="width:24px; height:24px">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                        <line x1="12" y1="9" x2="12" y2="13" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                </div>
+            </div>
+            <h3 style="font-family:'Playfair Display', serif; font-size:20px; color:var(--text); margin-bottom:12px"
+                id="confirm-modal-title">Delete Resident</h3>
+            <p style="font-size:14px; color:var(--text-2); line-height:1.5; margin-bottom:24px; text-align:left"
+                id="confirm-modal-desc">Are you sure you want to perform this action?</p>
+            <div style="display:flex; justify-content:end; gap:12px">
+                <button type="button" class="btn btn-secondary" style="padding:10px 20px"
+                    onclick="closeConfirmModal()">Cancel</button>
+                <button type="button" class="btn btn-danger" style="border:none; padding:10px 20px"
+                    id="confirm-modal-action-btn">Confirm Deletion</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

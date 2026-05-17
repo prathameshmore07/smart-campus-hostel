@@ -1,5 +1,8 @@
 === ANALYTICS REPORT ===
-Total Allocations: 13
-Failed Allocations: 5
-Successful Swaps: 1
-Average Roommate Compatibility: 25.8333%
+Total Rooms: 11
+Total Capacity: 36
+Total Occupancy: 12
+Total Allocations: 12
+Failed Allocations: 2
+Successful Swaps: 0
+Average Roommate Compatibility: 75%

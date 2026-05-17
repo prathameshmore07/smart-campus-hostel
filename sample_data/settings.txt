@@ -1,0 +1,1 @@
+Allow automatic room upgrade: 0
