@@ -1,3 +1,5 @@
 === WAITLIST REPORT ===
-1. [SM17] Sarang | Reason: Preferred Room Unavailable | Fairness Score: 1 | Waiting Time: 1 | Risk Level: 0
-2. [SF20] Neha | Reason: Preferred Room Unavailable | Fairness Score: 1 | Waiting Time: 1 | Risk Level: 0
+1. [SM56] Aareen | Reason: Preferred Room Unavailable | Fairness Score: 1 | Waiting Time: 1 | Risk Level: 0
+2. [SM17] Sarang | Reason: Preferred Room Unavailable | Fairness Score: 1 | Waiting Time: 1 | Risk Level: 0
+3. [SF20] Neha | Reason: Preferred Room Unavailable | Fairness Score: 1 | Waiting Time: 1 | Risk Level: 0
+4. [SM99] Rahul | Reason: Preferred Room Unavailable | Fairness Score: 1 | Waiting Time: 1 | Risk Level: 0

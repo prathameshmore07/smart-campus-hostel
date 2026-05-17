@@ -1,15 +1,12 @@
 === STUDENT RECORDS ===
-SF13  | Kavya       | Gender: F | CGPA: 9    | Room: G101
-SF14  | Sneha       | Gender: F | CGPA: 8.5  | Room: G201
 SF15  | Meera       | Gender: F | CGPA: 7.8  | Room: G301
 SF16  | Aditi       | Gender: F | CGPA: 8.2  | Room: G201
 SF17  | Riya        | Gender: F | CGPA: 8.1  | Room: G301
 SF19  | Isha        | Gender: F | CGPA: 7.9  | Room: G301
 SF20  | Neha        | Gender: F | CGPA: 7    | Room: Waitlisted
-SM01  | Prathamesh  | Gender: M | CGPA: 9.1  | Room: B101
-SM03  | Sumit       | Gender: M | CGPA: 8.2  | Room: B201
 SM04  | Arjun       | Gender: M | CGPA: 9    | Room: B301
-SM08  | Aakash      | Gender: M | CGPA: 7    | Room: B301
-SM11  | Tanay       | Gender: M | CGPA: 8.43 | Room: B301
+SM15  | Mahesh      | Gender: M | CGPA: 8    | Room: B201
 SM17  | Sarang      | Gender: M | CGPA: 8.76 | Room: Waitlisted
-SM56  | Aareen      | Gender: M | CGPA: 7.89 | Room: B201
+SM56  | Aareen      | Gender: M | CGPA: 7.89 | Room: Waitlisted
+SM89  | Rajesh      | Gender: M | CGPA: 8.9  | Room: B201
+SM99  | Rahul       | Gender: M | CGPA: 8.1  | Room: Waitlisted

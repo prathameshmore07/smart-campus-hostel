@@ -1,0 +1,12 @@
+[Sun May 17 19:42:55 2026] Resident ID: SF13 | Name: Kavya | Gender: F | Room: - | Action/Reason: removed by admin
+[Sun May 17 19:44:20 2026] Resident ID: SM01 | Name: Prathamesh | Gender: M | Room: - | Action/Reason: removed by admin
+[Sun May 17 20:08:56 2026] Resident ID: SM11 | Name: Tanay | Gender: M | Room: - | Action/Reason: removed by admin
+[Sun May 17 20:09:11 2026] Resident ID: SM08 | Name: Aakash | Gender: M | Room: - | Action/Reason: removed by admin
+[Sun May 17 20:09:29 2026] Resident ID: SM90 | Name: Rahul | Gender: M | Room: - | Action/Reason: removed by admin
+[Sun May 17 20:09:46 2026] Resident ID: SM67 | Name: Sahur | Gender: M | Room: - | Action/Reason: removed by admin
+[Sun May 17 20:09:51 2026] Resident ID: SM03 | Name: Sumit | Gender: M | Room: - | Action/Reason: removed by admin
+[Sun May 17 20:12:53 2026] Resident ID: SM45 | Name: Sallu | Gender: M | Room: - | Action/Reason: removed by admin
+[Sun May 17 20:13:02 2026] Resident ID: SM09 | Name: Karan | Gender: M | Room: - | Action/Reason: removed by admin
+[Sun May 17 20:29:01 2026] Resident ID: SM100 | Name: Kalia | Gender: M | Room: - | Action/Reason: removed by admin
+[Sun May 17 20:30:06 2026] Resident ID: SM100 | Name: Kalia | Gender: M | Room: - | Action/Reason: removed by admin
+[Sun May 17 20:31:14 2026] Resident ID: SM100 | Name: Kalia | Gender: M | Room: - | Action/Reason: removed by admin

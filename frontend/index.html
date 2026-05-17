@@ -103,14 +103,6 @@
                 </svg>
                 Reports
             </button>
-
-            <button class="nav-item" onclick="navigate('docs')">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path
-                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-                Documentation
-            </button>
         </nav>
 
         <div class="sidebar-footer"
@@ -426,6 +418,14 @@
                                 </svg>
                                 Recover Vacancies
                             </button>
+                            <button class="btn btn-secondary" onclick="graduationCheckout(this)" style="border-color:var(--warn); color:var(--warn)">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                    <path d="M6 12v5c0 2 3 4 6 4s6-2 6-4v-5" />
+                                </svg>
+                                Graduate Checkout
+                            </button>
                             <button class="btn btn-accent" onclick="runAllocation(this)">
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2">
@@ -644,22 +644,23 @@
                             <div class="card-title">Process Swap Chain</div>
                         </div>
                         <div class="card-body">
-                            <div class="form-group">
-                                <label class="form-label">Starting Resident ID</label>
-                                <input class="form-input" id="swap-start" placeholder="e.g. SM01"
-                                    style="font-family:var(--font-mono)">
-                                <div class="form-hint">DFS will find all connected swap cycles</div>
-                            </div>
-                            <div id="swap-preview" style="display:none;margin-bottom:16px">
-                                <div class="stat-label" style="margin-bottom:8px">Detected chain</div>
-                                <div class="swap-chain" id="swap-chain-viz"></div>
-                            </div>
-                            <div style="display:flex;gap:8px">
-                                <button class="btn btn-secondary" onclick="previewSwap()" style="flex:1">Preview
-                                    Chain</button>
-                                <button class="btn btn-accent" onclick="processSwap()" style="flex:1">Execute
-                                    Swap</button>
-                            </div>
+                             <div class="form-group">
+                                 <label class="form-label">Starting Resident ID</label>
+                                 <input class="form-input" id="swapStartId" placeholder="e.g. SM01"
+                                     style="font-family:var(--font-mono)">
+                                 <div class="form-hint">DFS will find all connected swap cycles</div>
+                             </div>
+                             <div id="swap-preview" style="margin-bottom:16px">
+                                 <div class="stat-label" style="margin-bottom:8px">Detected chain</div>
+                                 <div id="chainPreview"></div>
+                                 <div class="swap-chain" id="swap-chain-viz" style="display:none"></div>
+                             </div>
+                             <div style="display:flex;gap:8px">
+                                 <button class="btn btn-secondary" onclick="previewSwapChain()" style="flex:1">Preview
+                                     Chain</button>
+                                 <button class="btn btn-accent" onclick="processSwap()" style="flex:1">Execute
+                                     Swap</button>
+                             </div>
                             <div style="margin-top:10px">
                                 <button class="btn btn-danger full-width btn-sm" onclick="undoSwap()">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -674,28 +675,6 @@
                     </div>
                 </div>
 
-                <div class="section-sep"></div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Swap History</div>
-                    </div>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Time</th>
-                                    <th>Resident A</th>
-                                    <th>Resident B</th>
-                                    <th>From Room</th>
-                                    <th>To Room</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="swap-history-table"></tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
 
             <!-- ── CHECK MATCH ── -->
@@ -1289,105 +1268,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- ══════════════════════════════
-             SYSTEM DOCUMENTATION & FEATURES PAGE
-            ══════════════════════════════ -->
-            <div class="page" id="page-docs">
-                <div style="margin-bottom:32px">
-                    <h2 style="font-family:'Playfair Display', serif; font-size:32px; font-weight:600; color:var(--text); margin-bottom:12px">Staywise System Architecture & Features</h2>
-                    <p style="font-size:15px; color:var(--text-3); max-width:700px; line-height:1.6">A complete reference guide mapping all implemented Data Structures, Algorithms, Dynamic engines, and Admin modules of the Smart Campus Hostel ERP.</p>
-                </div>
-
-                <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:24px">
-                    <div class="card" style="padding:24px">
-                        <div class="card-header" style="border-bottom:1px solid var(--border); padding-bottom:12px; margin-bottom:16px">
-                            <h3 style="font-family:'Playfair Display', serif; font-size:20px; font-weight:600">🧠 Core Allocation & DSA Engines</h3>
-                        </div>
-                        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px">
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>Smart Room Allocation Engine:</strong> Custom priority based room matching logic enforcing gender limits and strict preferences.</div>
-                            </li>
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>Priority Queue Waitlist System:</strong> Binary heap waitQueue ensuring deterministic non-random student prioritization.</div>
-                            </li>
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>Fairness Rotation Mechanism:</strong> Queue-based fairnessQueue preventing starvation. Skipped students dynamically gain fairness score.</div>
-                            </li>
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>AVL Tree Student Ranking:</strong> Highly optimized self-balancing BST storing and sorting student records by key composite metrics.</div>
-                            </li>
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>Dynamic Programming Compatibility Engine:</strong> Matches roommates using habit vectors (Sleep, Study, Cleanliness) to calculate precise match scores.</div>
-                            </li>
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>DFS Graph-Based Room Swap System:</strong> Graph structure tracking multi-student cyclic roommate exchange preferences.</div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="card" style="padding:24px">
-                        <div class="card-header" style="border-bottom:1px solid var(--border); padding-bottom:12px; margin-bottom:16px">
-                            <h3 style="font-family:'Playfair Display', serif; font-size:20px; font-weight:600">⚡ Dynamic Operations Checklist</h3>
-                        </div>
-                        <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px">
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>Automatic Vacancy Recovery:</strong> Periodically identifies high-risk no-shows and automatically promotes highest priority waitlist students.</div>
-                            </li>
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>Manual Room Assignment:</strong> Allows admin to bypass automated matching and manually assign a student to a vacant room with safety filters.</div>
-                            </li>
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>Undo Swap Action:</strong> Implements a Stack data structure to revert the last completed cyclic swap operation cleanly.</div>
-                            </li>
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>Academic Year Promotion & Checkout:</strong> Semi-automated semester renewal transitioning students to subsequent classes and handling checkouts.</div>
-                            </li>
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>Resident Management Dashboard:</strong> Full CRUD capability for adding, viewing, modifying, or deleting hostel residents in real-time.</div>
-                            </li>
-                            <li style="display:flex; align-items:start; gap:10px; font-size:14px; line-height:1.5">
-                                <span style="color:var(--accent); font-weight:bold; font-size:16px">✓</span>
-                                <div><strong>Data Persistence Engine:</strong> All modifications dynamically commit to physical local record storage files (`students.txt`, `rooms.txt`).</div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card" style="padding:24px; margin-bottom:24px">
-                    <div class="card-header" style="border-bottom:1px solid var(--border); padding-bottom:12px; margin-bottom:16px">
-                        <h3 style="font-family:'Playfair Display', serif; font-size:20px; font-weight:600">🛠️ Active Module Operations Checklist</h3>
-                    </div>
-                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; font-size:13.5px">
-                        <div style="background:var(--surface-dark); padding:16px; border-radius:12px; border:1px solid var(--border)">
-                            <h4 style="font-weight:600; margin-bottom:8px">👥 Residents & Swaps Tab</h4>
-                            <div style="color:var(--text-2); line-height:1.5">Contains <strong>Add Resident</strong>, <strong>Edit</strong>, and <strong>Delete</strong> buttons. Has the cyclic roommate swap form with DFS chain solver, and <strong>Undo Last Swap</strong> button.</div>
-                        </div>
-                        <div style="background:var(--surface-dark); padding:16px; border-radius:12px; border:1px solid var(--border)">
-                            <h4 style="font-weight:600; margin-bottom:8px">📋 Waitlist & Allocation Tab</h4>
-                            <div style="color:var(--text-2); line-height:1.5">Includes the <strong>Run Smart Allocation</strong> and <strong>Recover Vacancies</strong> buttons. Displays full priority calculations, and provides the <strong>Assign Room</strong> button.</div>
-                        </div>
-                        <div style="background:var(--surface-dark); padding:16px; border-radius:12px; border:1px solid var(--border)">
-                            <h4 style="font-weight:600; margin-bottom:8px">🎓 End of Semester Tab</h4>
-                            <div style="color:var(--text-2); line-height:1.5">Provides the <strong>Run Semester Renewal</strong> button which handles grading checkouts, retention checks, placement extensions, and student promotions.</div>
-                        </div>
-                        <div style="background:var(--surface-dark); padding:16px; border-radius:12px; border:1px solid var(--border)">
-                            <h4 style="font-weight:600; margin-bottom:8px">📈 System Reports Tab</h4>
-                            <div style="color:var(--text-2); line-height:1.5">Provides download/export options for <strong>Room Allocations</strong>, <strong>Waitlist Report</strong>, <strong>Student Records</strong>, and <strong>Analytics Report</strong>.</div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div><!-- /content -->

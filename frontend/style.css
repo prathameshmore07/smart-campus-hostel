@@ -1067,3 +1067,19 @@ td {
 .full-width {
     width: 100%;
 }
+
+.empty-state {
+    text-align: center;
+    padding: 20px;
+    color: #888;
+}
+
+.status-badge.Completed {
+    color: green;
+    font-weight: 600;
+}
+
+.status-badge.Undone {
+    color: red;
+    font-weight: 600;
+}

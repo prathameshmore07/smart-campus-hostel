@@ -159,7 +159,6 @@ let rooms = [];
 let students = [];
 let waitlist = [];
 
-let swapHistory = [];
 
 let recentAllocs = [];
 
@@ -176,7 +175,6 @@ const pageTitles = {
     'renewal': 'Semester Renewal',
     'academic-status': 'Academic Status',
     'reports': 'Reports',
-    'docs': 'System Documentation',
 };
 
 // ── Navigation ────────────────────────────────────────────────
@@ -197,7 +195,6 @@ function navigate(page) {
     if (page === 'rooms') renderRooms();
     if (page === 'residents') renderResidents();
     if (page === 'waitlist') renderWaitlist();
-    if (page === 'swaps') renderSwapHistory();
     if (page === 'academic-status') renderYear4Overview();
 }
 
@@ -432,21 +429,7 @@ function handleWaitlistSearchFilter() {
     renderWaitlist(filtered);
 }
 
-function renderSwapHistory() {
-    const tbody = document.getElementById('swap-history-table');
-    tbody.innerHTML = swapHistory.map(s => `
-    <tr>
-      <td style="color:var(--text-3);font-size:12px">${s.time}</td>
-      <td><span class="text-mono">${s.a}</span></td>
-      <td><span class="text-mono">${s.b}</span></td>
-      <td><span class="text-mono" style="color:var(--text-2)">${s.fromA}</span></td>
-      <td><span class="text-mono" style="color:var(--text-2)">${s.toA}</span></td>
-      <td>${s.status === 'success'
-            ? '<span class="badge badge-green">Done</span>'
-            : '<span class="badge badge-gray">Undone</span>'}</td>
-    </tr>
-  `).join('');
-}
+
 
 function showRoomDetail(id) {
     const r = rooms.find(x => x.id === id);
@@ -610,6 +593,43 @@ async function runRenewal(triggerBtn = null) {
     }
 }
 
+async function graduationCheckout(triggerBtn = null) {
+    if (_operationInProgress) {
+        showToast('Another operation is in progress. Please wait.', 'warn');
+        return;
+    }
+    _operationInProgress = true;
+    if (triggerBtn) setButtonLoading(triggerBtn, true);
+    try {
+        const res = await fetch('/api/graduation-checkout', { method: 'POST' });
+        const data = await res.json();
+        if (data.success) {
+            if (data.graduated === 0) {
+                const retained = (data.skippedFailed || 0) + (data.skippedBacklog || 0) + (data.skippedExtension || 0) + (data.skippedSemester || 0);
+                if (retained > 0) {
+                    showToast(`No eligible graduates found. ${retained} student(s) retained (backlog/failed/extension/semester pending).`, 'warn');
+                } else {
+                    showToast('No students eligible for graduation checkout.', 'info');
+                }
+            } else {
+                let msg = `${data.graduated} student(s) graduated and checked out.`;
+                if (data.promoted > 0) {
+                    msg += ` ${data.promoted} waitlisted student(s) promoted to vacated rooms.`;
+                }
+                showToast(msg, 'success');
+            }
+            refreshAllData();
+        } else {
+            showToast(data.error || 'Graduation checkout failed.', 'error');
+        }
+    } catch (e) {
+        showToast('Error processing graduation checkout.', 'error');
+    } finally {
+        _operationInProgress = false;
+        if (triggerBtn) setButtonLoading(triggerBtn, false);
+    }
+}
+
 async function addSwapLink() {
     const id1 = document.getElementById('swap-id1').value.trim().toUpperCase();
     const id2 = document.getElementById('swap-id2').value.trim().toUpperCase();
@@ -640,27 +660,58 @@ async function addSwapLink() {
     }
 }
 
-function previewSwap() {
-    const start = document.getElementById('swap-start').value.trim();
-    if (!start) { showToast('Enter a starting resident ID.', 'warn'); return; }
+async function previewSwap() {
+    await previewSwapChain();
+}
 
-    const chain = [start, 'SM02', 'SM03'];
-    const viz = document.getElementById('swap-chain-viz');
-    const preview = document.getElementById('swap-preview');
-
-    viz.innerHTML = chain.map((id, i) => `
-    <span class="swap-node">${id}</span>
-    ${i < chain.length - 1
-            ? '<span class="swap-arrow">→</span>'
-            : `<span class="swap-arrow">↩</span><span class="swap-node">${chain[0]}</span>`}
-  `).join('');
-
-    preview.style.display = 'block';
-    showToast('Swap chain detected: ' + chain.join(' → '));
+async function previewSwapChain() {
+    try {
+        const startIdInput = document.getElementById('swapStartId') || document.getElementById('swap-start');
+        const startId = startIdInput ? startIdInput.value.trim() : '';
+        if (!startId) {
+            showToast('Enter starting resident ID', 'error');
+            return;
+        }
+        const response = await fetch(
+            `/api/preview-swap?startId=${encodeURIComponent(startId)}`
+        );
+        if (!response.ok) {
+            throw new Error('Server error');
+        }
+        const data = await response.json();
+        const container =
+            document.getElementById('chainPreview');
+        container.innerHTML = '';
+        if (!data.chain || data.chain.length === 0) {
+            container.innerHTML =
+                '<p>No swap chain found</p>';
+            return;
+        }
+        data.chain.forEach((id, index) => {
+            const node = document.createElement('div');
+            node.className = 'chain-node';
+            node.innerText = id;
+            container.appendChild(node);
+            if (index < data.chain.length - 1) {
+                const arrow =
+                    document.createElement('span');
+                arrow.className = 'chain-arrow';
+                arrow.innerHTML = '→';
+                container.appendChild(arrow);
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        showToast(
+            'Error loading swap preview',
+            'error'
+        );
+    }
 }
 
 async function processSwap() {
-    const startId = document.getElementById('swap-start').value.trim();
+    const startIdInput = document.getElementById('swapStartId') || document.getElementById('swap-start');
+    const startId = startIdInput ? startIdInput.value.trim() : '';
     if (!startId) { showToast('Enter a starting resident ID.', 'warn'); return; }
 
     try {
@@ -672,8 +723,9 @@ async function processSwap() {
         const data = await res.json();
         if (data.success) {
             showToast('Room swap chain executed successfully.');
-            document.getElementById('swap-start').value = '';
-            document.getElementById('swap-preview').style.display = 'none';
+            if (startIdInput) startIdInput.value = '';
+            const preview = document.getElementById('swap-preview');
+            if (preview) preview.style.display = 'none';
             refreshAllData();
         } else {
             showToast(data.error || 'Swap execution failed', 'error');
@@ -1218,6 +1270,7 @@ async function fetchStudentsData() {
             room: s.isAllocated ? s.currentRoom : '-',
             status: s.isAllocated ? 'allocated' : 'waitlisted',
             risk: s.riskLevel,
+            allocationOrder: s.allocationOrder || 0,
             special: s.specialNeeds,
             examPassed: s.examPassed,
             hasBacklog: s.hasBacklog,
@@ -1232,8 +1285,11 @@ async function fetchStudentsData() {
             studyHabit: s.studyHabit
         }));
 
-        // Populate recentAllocs from students
-        recentAllocs = students.filter(s => s.status === 'allocated').slice(0, 5);
+        // Populate recentAllocs from students sorted by allocationOrder descending
+        recentAllocs = students
+            .filter(s => s.status === 'allocated')
+            .sort((a, b) => b.allocationOrder - a.allocationOrder)
+            .slice(0, 5);
 
         // Update dashboard total residents to show all registered students
         document.getElementById('dashboard-total-residents').textContent = students.length;
