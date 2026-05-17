@@ -4,7 +4,6 @@
 
 [![Built With C++](https://img.shields.io/badge/Backend-C++17-00599C.svg?style=for-the-badge&logo=c%2B%2B)](https://isocpp.org/)
 [![Vanilla JS](https://img.shields.io/badge/Frontend-Vanilla_JS-F7DF1E.svg?style=for-the-badge&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](#)
 
 *An algorithmic resource planning platform for campus accommodation management, powered by a custom C++ HTTP server and advanced Data Structures.*
 
